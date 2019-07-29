@@ -13,6 +13,9 @@ See the License for the specific language governing permissions and
 limitations under the License.
 */
 
+let sandbagbags = [];
+window.sandbagbags = sandbagbags;
+
 function Polyfill(scope) {
     this.scope = scope;
 
@@ -33,7 +36,7 @@ function Polyfill(scope) {
 }
 
 function fakeIt(element, offsets) {
-    var wrapper = document.createElement('div'),
+    var sandbags = [],
         styles;
 
     offsets.forEach(function(offset, i) {
@@ -48,42 +51,9 @@ function fakeIt(element, offsets) {
         };
         for (var prop in styles)
             sandbag.style[prop] = styles[prop];
-        wrapper.appendChild(sandbag);
+        sandbags.push(sandbag);
     });
-
-    styles = {
-        position: 'relative',
-        width: 'auto',
-        height: '0',
-        clear: 'both',
-        pointerEvents: 'none'
-    };
-
-    for (var prop in styles)
-        wrapper.style[prop] = styles[prop];
-
-    var parent = element.parentNode, subwrapper,
-        computedStyle = getComputedStyle(parent),
-        borderHeight = parseFloat(computedStyle.borderTop) + parseFloat(computedStyle.borderBottom);
-
-    styles = {
-        position: 'absolute',
-        top: '0',
-        width: '100%', // will fill the whole width, FF does 'auto' differently
-        height: parent.clientHeight - borderHeight,
-        left: '0'
-    };
-
-    subwrapper = document.createElement('div');
-    for (prop in styles)
-        subwrapper.style[prop] = styles[prop];
-    wrapper.appendChild(subwrapper);
-
-    if (element.parentNode)
-        element.parentNode.insertBefore(wrapper, element);
-    subwrapper.appendChild(element);
-
-    wrapper.setAttribute('data-shape-outside-container', 'true');
+    sandbagbags.push(sandbags);
 }
 
 Polyfill.prototype.polyfill = function(element, settings) {
@@ -95,7 +65,7 @@ Polyfill.prototype.polyfill = function(element, settings) {
     // ideally this would default to lineHeight, but 'normal' is a valid computed value
     // and is up to the UA
     var step = settings && settings.step || parseInt(computedStyle.fontSize); // used when mode is "step"
-    var mode = settings && settings.mode || "adaptive";  
+    var mode = settings && settings.mode || "adaptive";
     var limit = settings && settings.limit || step * 1.8;
     var shapeInfo = new ShapeInfo(element);
 
@@ -168,6 +138,16 @@ Polyfill.prototype.run = function(settings) {
             });
 
             self.run(settings);
+            const sandbags_div = document.createElement('div')
+            document.body.prepend(sandbags_div);
+
+            // interleave sandbag divs to avoid float stacking problems
+            // TODO right now only works if all shape-outside divs get turned into same number of sandbags
+            for (let x = 0; x < sandbagbags[0].length; x ++){
+                for (let i = 0; i < sandbagbags.length; i ++){
+                    sandbags_div.appendChild(sandbagbags[i][x]);
+                }
+            }
         });
 
         var relayout = debounce(function() {
@@ -175,7 +155,6 @@ Polyfill.prototype.run = function(settings) {
             self.run(settings);
         }, 300);
         this.scope.addEventListener('resize', relayout);
-
         return;
     }
 

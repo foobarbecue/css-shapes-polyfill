@@ -1,67 +1,34 @@
 <html>
 <head>
-    <meta charset="utf-8">
-    <meta name="copyright"
-          content="Copyright © 2014 Adobe Systems Incorporated. All rights reserved.&#10;&#10; Licensed under the Apache License, Version 2.0 (the “License”);&#10; you may not use this file except in compliance with the License.&#10; You may obtain a copy of the License at&#10;&#10; http://www.apache.org/licenses/LICENSE-2.0&#10;&#10; Unless required by applicable law or agreed to in writing, software&#10; distributed under the License is distributed on an “AS IS” BASIS,&#10; WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.&#10; See the License for the specific language governing permissions and&#10; limitations under the License.">
-
     <style>
-        #container {
-            width: 400px;
-            font-size: 10px;
+        .leftDiv {
+            background: red;
+            width: 50px;
+            height: 20px;
+            float:left;
+            clear:left;
         }
-
-        #polygon-shape-outside-left {
-            width: 180px;
-            height: 200px;
-            float: left;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200px' height='200px'><polygon points='0,0 142,33 89,141 0,200' fill='rgba(0,0,255, 0.25)'/></svg>");
-            shape-outside: polygon(0px 0px, 142px 33px, 89px 141px, 0px 200px);
+        .rightDiv{
+            background: red;
+            width: 50px;
+            height: 20px;
+            float:right;
+            clear: right;
         }
-
-        #polygon-shape-outside-right {
-            width: 180px;
-            height: 200px;
-            float: right;
-            background-image: url("data:image/svg+xml;utf8,<svg xmlns='http://www.w3.org/2000/svg' width='200px' height='200px'><polygon points='350, 0 500, 0 500, 100 400, 100' fill='rgba(0,0,255, 0.25)'/></svg>");
-            shape-outside: polygon(100px 0px, 200px 0px, 200px 100px, 150px 100px);
-        }
-
-        .footer {
-            display: inline-block;
-            position: absolute;
-            bottom: 0;
-            right: 0;
-            padding: .5em;
+        body{
+            height: 100%;
         }
     </style>
 </head>
 <body>
-<div id="container">
-    <div style="width: auto; height: 0px; clear: both; position: relative; pointer-events: none;"
-         data-shape-outside-container="true">
-        <div class="sandbag" style="width: 43.03px; height: 50px; clear: left; float: left;"></div>
-    </div>
-    <div style="width: auto; height: 0px; clear: both; position: relative; pointer-events: none;"
-         data-shape-outside-container="true">
-        <div class="sandbag" style="width: 80px; height: 50px; clear: right; float: right;"></div>
-    </div>
-    <p>Pelicans are a genus of large water birds comprising the family Pelecanidae. They are characterised by a long
-        beak and large throat pouch used for catching prey and draining water from the scooped up contents before
-        swallowing. They have predominantly pale plumage, the exceptions being the Brown and Peruvian Pelicans. The
-        bills, pouches and bare facial skin of all species become brightly coloured before the breeding season. The
-        eight living pelican species have a patchy global distribution, ranging latitudinally from the tropics to the
-        temperate zone, though they are absent from interior South America as well as from polar regions and the open
-        ocean. Fossil evidence of pelicans dates back at least 30 million years, to the remains of a beak very similar
-        to that of modern species recovered from Oligocene strata in France.</p>
+    <div class="leftDiv"></div>
+    <div class="rightDiv"></div>
+    <div class="leftDiv"></div>
+    <div class="rightDiv"></div>
+    <div class="leftDiv"></div>
+    <div class="rightDiv"></div>
+    <p>Pelicans are a genus of large water birds comprising the family Pelecanidae. They are characterised by a long beak and large throat pouch used for catching prey and draining water from the scooped up contents before swallowing. They have predominantly pale plumage, the exceptions being the Brown and Peruvian Pelicans. The bills, pouches and bare facial skin of all species become brightly coloured before the breeding season. The eight living pelican species have a patchy global distribution, ranging latitudinally from the tropics to the temperate zone, though they are absent from interior South America as well as from polar regions and the open ocean. Fossil evidence of pelicans dates back at least 30 million years, to the remains of a beak very similar to that of modern species recovered from Oligocene strata in France.</p>
 
-    <p>Long thought to be related to frigatebirds, cormorants, tropicbirds, gannets and boobies, pelicans are now known
-        instead to be most closely related to the Shoebill and Hamerkop, and are placed in the order Pelecaniformes.
-        Ibises, spoonbills and herons are more distant relatives, and have been classified in the same order. Pelicans
-        frequent inland and coastal waters where they feed principally on fish, catching them at or near the water
-        surface. Gregarious birds, they often hunt cooperatively and breed colonially. Four white-plumaged species tend
-        to nest on the ground, and four brown or grey-plumaged species nest mainly in trees.</p>
-</div>
-
-
+    <p>Long thought to be related to frigatebirds, cormorants, tropicbirds, gannets and boobies, pelicans are now known instead to be most closely related to the Shoebill and Hamerkop, and are placed in the order Pelecaniformes. Ibises, spoonbills and herons are more distant relatives, and have been classified in the same order. Pelicans frequent inland and coastal waters where they feed principally on fish, catching them at or near the water surface. Gregarious birds, they often hunt cooperatively and breed colonially. Four white-plumaged species tend to nest on the ground, and four brown or grey-plumaged species nest mainly in trees.</p>
 </body>
 </html>
